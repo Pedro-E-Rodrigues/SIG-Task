@@ -12,9 +12,18 @@ void telapesquisarfuncionario(void);
 void telaeditarfuncionario(void);
 void telaexcluirfuncionario(void);
 
-void telaagenda(void);
 void telacompromissos(void);
+void visualizarcompromisso(void);
+void adicionarcompromisso(void);
+void editarcompromisso(void);
+void excluircompromisso(void);
+
 void telatarefas(void);
+void visualizartarefa(void);
+void adicionartarefa(void);
+void editartarefa(void);
+void excluirtarefa(void);
+
 void telarelatorio(void);
 
 //principal:
@@ -29,9 +38,19 @@ int main(void) {
     telaeditarfuncionario();
     telaexcluirfuncionario();
     
-    telaagenda();
+
     telacompromissos();
+    visualizarcompromisso();
+    adicionarcompromisso();
+    editarcompromisso();
+    excluircompromisso();
+
     telatarefas();
+    visualizartarefa();
+    adicionartarefa();
+    editartarefa();
+    excluirtarefa();
+
     telarelatorio();
     
     return 0;
@@ -54,8 +73,9 @@ void telamenu(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");               
     printf("///            1. Menu Funcionários                                         ///\n");
-    printf("///            2. Menu Agenda                                               ///\n");
-    printf("///            3. Sair                                                      ///\n");
+    printf("///            2. Menu Compromissos                                         ///\n");
+    printf("///            3. Menu Tarefas                                              ///\n");
+    printf("///            4. Sair                                                      ///\n");
     printf("///            Escolha a opção desejada: ");
     scanf("%c", &op);
     getchar();
@@ -197,33 +217,6 @@ void telaexcluirfuncionario(void){
     getchar();
 }
 
-void telaagenda(void){
-    char op;
-
-    system("clear||cls");
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
-    printf("///           = = = = = = =   Menu Agenda = = = = = = = = = =             ///\n");
-    printf("///           = = = = = = = = = = = = = = = = = = = = = = = =             ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           1. Compromissos                                             ///\n");
-    printf("///           2. Tarefas                                                  ///\n");
-    printf("///           3. Anotações                                                ///\n");
-    printf("///           0. Voltar ao menu anterior                                  ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           Escolha a opção desejada: ");
-    scanf("%c", &op);
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
 
 void telacompromissos(void){
     char op;
@@ -250,6 +243,79 @@ void telacompromissos(void){
     getchar();
 }
 
+void visualizarcompromisso(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n");
+    printf("///           = = = = = = = = Visualizar Compromissos = = = = = = = =     ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void adicionarcompromisso(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Adicionar Compromissos = = = = = = = =      ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+
+}
+
+void editarcompromisso(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Editar Compromissos = = = = = = = =         ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void excluircompromisso(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Excluir Compromissos = = = = = = = =        ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
 void telatarefas(void){
     char op;
 
@@ -266,6 +332,78 @@ void telatarefas(void){
     printf("///                                                                       ///\n");
     printf("///           Escolha a opção desejada: ");
     scanf("%c", &op);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void visualizartarefa(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Visualizar Tarefas = = = = = = = =          ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void adicionartarefa(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Adicionar Tarefas = = = = = = = =           ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void editartarefa(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Editar Tarefas = = = = = = = =              ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void excluirtarefa(void){
+    char cpf[12];
+
+    system("clear||cls");
+    printf("\n"); 
+    printf("///           = = = = = = = = Excluir Tarefas = = = = = = = =             ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Informe o CPF (apenas números): ");
+    scanf("%[0-9]", cpf);
     getchar();
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
