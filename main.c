@@ -1,24 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //Funções:
 
-void telamenu(void);
+char telamenu(void);
 void telasobre(void);
 
-void telafuncionarios(void);
+void modulofuncionarios(void);
+char telafuncionarios(void);
 void telacadastrarfuncionario(void);
 void telapesquisarfuncionario(void);
 void telaeditarfuncionario(void);
 void telaexcluirfuncionario(void);
 
-void telacompromissos(void);
+void modulocompromissos(void);
+char telacompromissos(void);
 void visualizarcompromisso(void);
 void adicionarcompromisso(void);
 void editarcompromisso(void);
 void excluircompromisso(void);
 
-void telatarefas(void);
+void modulotarefas(void);
+char telatarefas(void);
 void visualizartarefa(void);
 void adicionartarefa(void);
 void editartarefa(void);
@@ -29,35 +33,30 @@ void telarelatorio(void);
 //principal:
 
 int main(void) {
-    telamenu();
-    telasobre();
-    
-    telafuncionarios();
-    telacadastrarfuncionario();
-    telapesquisarfuncionario();
-    telaeditarfuncionario();
-    telaexcluirfuncionario();
-    
+    char opcao;
 
-    telacompromissos();
-    visualizarcompromisso();
-    adicionarcompromisso();
-    editarcompromisso();
-    excluircompromisso();
+    do {
+        opcao = telamenu();
+        switch(opcao) {
+            case '1':   modulofuncionarios();
+                        break;
+            case '2':   modulocompromissos();
+                        break;
+            case '3':   modulotarefas();
+                        break;
+            case '4':   // Módulo Relatórios
+                        break;
+            case '5':   telasobre();
+                        break;
+            
+        } 	
+    } while (opcao != '0');
 
-    telatarefas();
-    visualizartarefa();
-    adicionartarefa();
-    editartarefa();
-    excluirtarefa();
-
-    telarelatorio();
-    
     return 0;
  
 }
 
-void telamenu(void) {
+char telamenu(void) {
     char op;
 
     system("clear||cls");
@@ -69,18 +68,20 @@ void telamenu(void) {
     printf("///                 Bacharelado Sistemas de Informação                      ///\n");
     printf("///                  Disciplina DCT1106 -- Programação                      ///\n");
     printf("///           Projeto SIG-Task: Agenda de Tarefas e Compromissos            ///\n");
-    printf("///                Developed by @Pedro-E-Rodrigues-- 2023                   ///\n");
+    printf("///                Developed by @Pedro-E-Rodrigues -2023                    ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");               
     printf("///            1. Menu Funcionários                                         ///\n");
     printf("///            2. Menu Compromissos                                         ///\n");
     printf("///            3. Menu Tarefas                                              ///\n");
-    printf("///            4. Sair                                                      ///\n");
+    printf("///            4. Relatórios                                                ///\n");
+    printf("///            5. Sobre                                                     ///\n");
+    printf("///            0. Sair                                                      ///\n");
     printf("///            Escolha a opção desejada: ");
     scanf("%c", &op);
     getchar();
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
 }
 
 void telasobre(void) {
@@ -98,7 +99,24 @@ void telasobre(void) {
     getchar();
 }
 
-void telafuncionarios(void) {
+void modulofuncionarios(void){
+    char opcao;
+    do {
+        opcao = telafuncionarios();
+        switch(opcao) {
+            case '1': 	telacadastrarfuncionario();
+                        break;
+            case '2': 	telapesquisarfuncionario();
+                        break;
+            case '3': 	telaeditarfuncionario();
+                        break;
+            case '4': 	telaexcluirfuncionario();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+char telafuncionarios(void) {
     char op;
 
     system("clear||cls");
@@ -123,7 +141,7 @@ void telafuncionarios(void) {
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
 }
 
 void telacadastrarfuncionario(void) {
@@ -217,8 +235,24 @@ void telaexcluirfuncionario(void){
     getchar();
 }
 
+void modulocompromissos(void){
+    char opcao;
+    do {
+        opcao = telacompromissos();
+        switch(opcao) {
+            case '1': 	visualizarcompromisso();
+                        break;
+            case '2': 	adicionarcompromisso();
+                        break;
+            case '3': 	editarcompromisso();
+                        break;
+            case '4': 	excluircompromisso();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
 
-void telacompromissos(void){
+char telacompromissos(void){
     char op;
 
     system("clear||cls");
@@ -240,7 +274,7 @@ void telacompromissos(void){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
 }
 
 void visualizarcompromisso(void){
@@ -316,7 +350,24 @@ void excluircompromisso(void){
     getchar();
 }
 
-void telatarefas(void){
+void modulotarefas(void){
+    char opcao;
+    do {
+        opcao = telatarefas();
+        switch(opcao) {
+            case '1': 	visualizartarefa();
+                        break;
+            case '2': 	adicionartarefa();
+                        break;
+            case '3': 	editartarefa();
+                        break;
+            case '4': 	excluirtarefa();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+char telatarefas(void){
     char op;
 
     system("clear||cls");
@@ -338,7 +389,7 @@ void telatarefas(void){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
 }
 
 void visualizartarefa(void){
