@@ -1,3 +1,5 @@
 ///Assinaturas relatório
 
-void telarelatorio(void);
+char telarelatorio(void);
+
+void listar_funcionarios(void);

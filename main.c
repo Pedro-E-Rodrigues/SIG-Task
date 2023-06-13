@@ -26,7 +26,7 @@ int main(void) {
                         break;
             case '3':   modulotarefas();
                         break;
-            case '4':   // Módulo Relatórios
+            case '4':   moduloRelatório();
                         break;
             case '5':   telasobre();
                         break;

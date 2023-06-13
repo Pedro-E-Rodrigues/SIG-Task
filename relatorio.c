@@ -29,13 +29,19 @@ char telarelatorio(void){
     printf("///           1. Listar Funcionarios                                      ///\n");
 	printf("///           2. Exibir Tarefas por Funcionario                           ///\n");
 	printf("///           3. Exibir Funcionarios por horario                          ///\n");
+    printf("///           0. Voltar ao menu anterior                                  ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Escolha a opção desejada: ");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    scanf("%c", &op);
     getchar();
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
 }
 
 void listar_funcionarios(void){
