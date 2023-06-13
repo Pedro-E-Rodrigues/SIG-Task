@@ -2,23 +2,60 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "relatorio.h"
+#include "funcionarios.h"
+#include "valida.h"
+
+void moduloRelatorio(void){
+    char opcao;
+    do{
+        opcao = telarelatorio();
+        switch(opcao){
+            case '1': listar_funcionarios();
+                    break;
+        }    
+    }while (opcao != '0');
+}
 
 
 
-void telarelatorio(void){
-    char cpf[12];
+
+char telarelatorio(void){
+    char op;
 
     system("clear||cls");
     printf("\n");
-    printf("///           = = = = = = =  Relatórios  = = = = = = = = = = =               ///\n");
+    printf("///           = = = = = = =  Relatórios  = = = = = = = = = = =            ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Informe o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    printf("///           1. Listar Funcionarios                                      ///\n");
+	printf("///           2. Exibir Tarefas por Funcionario                           ///\n");
+	printf("///           3. Exibir Funcionarios por horario                          ///\n");
+    printf("///           0. Voltar ao menu anterior                                  ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Escolha a opção desejada: ");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    scanf("%c", &op);
     getchar();
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return op;
+}
+
+void listar_funcionarios(void){
+    FILE* fp;
+    Funcionario* func;
+
+    func = (Funcionario*) malloc(sizeof(Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    while(fread(func, sizeof(Funcionario), 1,fp)){
+        exibirFuncionario(func);
+        printf("/n");
+    }
+    fclose(fp);
+    free(func);
+
+
 }
