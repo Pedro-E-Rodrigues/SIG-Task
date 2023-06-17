@@ -7,10 +7,17 @@ struct tarefa {
 };
 
 ///Assinaturas tarefas
+void visualizar_tarefa(void);
+void adicionar_tarefa(void);
 
 void modulotarefas(void);
 char telatarefas(void);
-void visualizartarefa(void);
-void adicionartarefa(void);
-void editartarefa(void);
-void excluirtarefa(void);
+char* tela_visualizar_tarefa(void);
+Tarefa* tela_adicionar_tarefa(void);
+void tela_editar_tarefa(void);
+void tela_excluir_tarefa(void);
+
+void salvar_tarefa(Tarefa*);
+Tarefa* buscar_Tarefa(char*);
+void exibirTarefa(Tarefa*);
+void regravarTarefa(Tarefa*);

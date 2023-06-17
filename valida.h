@@ -17,6 +17,6 @@ int validar_letra(char);
 int validar_nome(char*);
 int verifica_data(int, int, int);
 int valida_data(char*);
-
-
+int valida_id(char*, int);
+int quantidade_digitos(char*, int);
 

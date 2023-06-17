@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "tarefas.h"
 #include "valida.h"
 
@@ -11,16 +12,37 @@ void modulotarefas(void){
     do {
         opcao = telatarefas();
         switch(opcao) {
-            case '1': 	visualizartarefa();
+            case '1': 	visualizar_tarefa();
                         break;
-            case '2': 	adicionartarefa();
+            case '2': 	adicionar_tarefa();
                         break;
-            case '3': 	editartarefa();
+            case '3': 	editar_tarefa();
                         break;
-            case '4': 	excluirtarefa();
+            case '4': 	excluir_tarefa();
                         break;
         } 		
     } while (opcao != '0');
+}
+
+void visualizar_tarefa(void) {
+    Tarefa *tar;
+    char *id;
+
+    id = tela_visualizar_tarefa();
+    tar = buscar_Tarefa(id);
+    exibirTarefa(tar);
+    
+    free(tar);
+    free(id);
+}
+
+void adicionar_tarefa(void) {
+    Tarefa *tar;
+    
+    tar = tela_adicionar_tarefa();
+    salvar_tarefa(tar);
+
+    free(tar);
 }
 
 
@@ -49,15 +71,16 @@ char telatarefas(void){
     return op;
 }
 
-void visualizartarefa(void){
-    char cpf[12];
+char* tela_visualizar_tarefa(void){
+    char* id;
 
+    id = (char*) malloc(6*sizeof(char));
     system("clear||cls");
     printf("\n"); 
     printf("///           = = = = = = = = Visualizar Tarefas = = = = = = = =          ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Informe o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    printf("            Digite o ID do Projeto: \n");
+    scanf("%[^\n]", id);
     getchar();
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
@@ -65,27 +88,48 @@ void visualizartarefa(void){
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+    return id;
 }
 
-void adicionartarefa(void){
-    char cpf[12];
+Tarefa* tela_adicionar_tarefa(void){
+    Tarefa *tar;
 
+    tar = (Tarefa*) malloc(sizeof(Tarefa));
     system("clear||cls");
     printf("\n"); 
     printf("///           = = = = = = = = Adicionar Tarefas = = = = = = = =           ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Informe o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
+    do {
+        printf("            Titulo/Nome: \n");
+        printf("            => ");
+        scanf("%[^\n]", tar->nome);
+        getchar();
+    } while (!validar_nome(tar->nome));
+    printf("\n");
+
+    do {
+        printf("            ID do Projeto: \n");
+        printf("            => ");
+        scanf("%[^\n]", tar->id);
+        getchar();
+    } while (!valida_id(tar->id, 5));
+    printf("\n");
+
+    do {
+        printf("            Data limite para entrega (dd/mm/aaaa): \n");
+        printf("            => ");
+        scanf("%[^\n]", tar->data_entrega);
+        getchar();
+    } while (!valida_data(tar->data_entrega));
+    tar->status = true;
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+//Funções feitas por: quirinof
 
-void editartarefa(void){
+void tela_editar_tarefa(void){
     char cpf[12];
 
     system("clear||cls");
@@ -103,7 +147,7 @@ void editartarefa(void){
     getchar();
 }
 
-void excluirtarefa(void){
+void tela_excluir_tarefa(void){
     char cpf[12];
 
     system("clear||cls");

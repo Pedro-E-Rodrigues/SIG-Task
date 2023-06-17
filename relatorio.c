@@ -5,12 +5,12 @@
 #include "funcionarios.h"
 #include "valida.h"
 
-void moduloRelatorio(void){
+void modulo_Relatorio(void){
     char opcao;
     do{
         opcao = telarelatorio();
         switch(opcao){
-            case '1': lista_func();
+            case '1': listar_funcionarios();
                     break;
         }    
     }while (opcao != '0');

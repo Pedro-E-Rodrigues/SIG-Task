@@ -170,6 +170,26 @@ int verifica_data(int dia, int mes, int ano) {
            }
 }
 
+int valida_id(char* id, int t) {
+    //       o id em si, o tamanho do id para tornar uma função genérica
+    int i;
+
+    // verifica a quantidade de digitos
+    if (!quantidade_digitos(id, t)) {
+        return 0;
+    }
+
+    // apenas digitos numericos
+    for (i = 0; i < t; i++) {
+        if (!digito(id[i])) {
+            return 0;
+        }
+    }
+
+    // ID valido
+    return 1;
+}
+
 int valida_data(char* data) {
     int dia, mes, ano;
     // verifica quantidade de digitos 
@@ -221,4 +241,19 @@ bool validar_horas(char horas[]) {
     }
     
     return true;
+}
+
+int quantidade_digitos(char* v, int x) {
+    int i;
+    for (i = 0; i < x; i++) {
+        if (v[i] == '\0') {
+            return 0;
+        }
+    }
+    if (v[i] != '\0') {
+        return 0;
+    }
+    else {
+        return 1;
+    }
 }
