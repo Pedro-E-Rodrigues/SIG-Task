@@ -15,7 +15,8 @@ bool validar_cpf(char cpf[]);
 int digito(char);
 int validar_letra(char);
 int validar_nome(char*);
-int valida_data(int, int, int);
+int verifica_data(int, int, int);
+int valida_data(char*);
 
 
 

@@ -140,7 +140,7 @@ bool validar_email(char email[]) {
 ////////////////Validação de data:
 /// Autor: https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
 
-int valida_data(int dia, int mes, int ano) { 
+int verifica_data(int dia, int mes, int ano) { 
     if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) ///verifica se os numeros sao validos
         {
             if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) ///verifica se o ano e bissexto
@@ -168,6 +168,23 @@ int valida_data(int dia, int mes, int ano) {
            {
                 return 0;
            }
+}
+
+int valida_data(char* data) {
+    int dia, mes, ano;
+    // verifica quantidade de digitos 
+    if (!quantidade_digitos(data, 10)) {
+        return 0;
+    }
+    dia = (data[0] - '0') * 10 + (data[1] - '0');
+    mes = (data[3] - '0') * 10 + (data[4] - '0');
+    ano = (data[6] - '0') * 1000 + (data[7] - '0') * 100 + (data[8] - '0') * 10 + (data [9] - '0');
+    // verifica se é uma data valida
+    if (!verifica_data(dia, mes, ano)) {
+        return 0;
+    }
+
+    return 1;
 }
 
 ////////////////Validação de hora:
