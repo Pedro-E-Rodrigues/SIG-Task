@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "tarefas.h"
+#include "valida.h"
 
 //Funções:
 
@@ -21,6 +22,7 @@ void modulotarefas(void){
         } 		
     } while (opcao != '0');
 }
+
 
 char telatarefas(void){
     char op;
@@ -117,4 +119,71 @@ void excluirtarefa(void){
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+// Arquivamento
+void salvar_tarefa(Tarefa* tar) {
+    FILE *fp;
+    fp = fopen("tarefa.dat", "ab");
+    if(fp == NULL) {
+        printf("Algo deu errado"); 
+    }
+    fwrite(tar, sizeof(Tarefa), 1, fp);
+    fclose(fp);
+}
+
+Tarefa* buscar_Tarefa(char* id){
+    FILE* fp;
+    Tarefa* tar;
+
+    tar = (Tarefa*) malloc(sizeof(Tarefa));
+    fp = fopen("tarefa.dat", "rb");
+    if (fp == NULL){
+        printf("\n\nTarefa não encontrada");
+    }
+    while(fread(tar, sizeof(Tarefa), 1,fp)){
+        if ((strcmp(tar->id, id) == 0) && (tar->status == true)) {
+			fclose(fp);
+			return tar;
+		}
+    }
+    fclose(fp);
+    return NULL;
+}
+
+void exibirTarefa(Tarefa* tar){
+    if (tar == NULL){
+        printf("\n= = = Tarefa Inexistente = = =\n");
+    } else {
+        printf("\n= = = Tarefa Cadastrada = = =\n");
+        printf("ID: %s\n", tar->id);
+        printf("Nome: %s\n", tar->nome);
+        printf("Data de Entrega(dd/mm/aaaa): %s \n", tar->data_entrega);
+        printf("Status: %d\n", tar->status);
+
+    }
+    printf("\n\nTecle ENTER para continuar!\n\n");
+	getchar();
+}
+
+void regravarTarefa(Tarefa* tar) {
+    int achou;
+    FILE* fp;
+    Tarefa* tarLido;
+
+    tarLido = (Tarefa*) malloc(sizeof(Tarefa));
+    fp = fopen("tarefa.dat", "r+b");
+    if (fp == NULL){
+        printf("\n= = = Tarefa Inexistente = = =\n");
+    }
+    achou = false;
+    while(fread(tarLido, sizeof(Tarefa), 1, fp) && !achou){
+        if (strcmp(tarLido->id, tar->id) == 0){
+            achou = true;
+            fseek(fp, -1*sizeof(Tarefa), SEEK_CUR);
+        fwrite(tar, sizeof(Tarefa), 1, fp);    
+        }
+    }
+    fclose(fp);
+    free(tarLido);
 }
