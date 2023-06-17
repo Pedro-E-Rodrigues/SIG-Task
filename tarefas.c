@@ -45,6 +45,45 @@ void adicionar_tarefa(void) {
     free(tar);
 }
 
+void editar_tarefa(void) {
+    Tarefa *tar;
+    char *id;
+
+    id = tela_atualizar_tarefa();
+    tar = buscar_Tarefa(id);
+    if (tar == NULL){
+        printf(" ||               >>>>>> Tarefa inexistente <<<<<<                 ||\n");
+    }
+    else{
+        tela_editar_tarefa(tar);
+        strcpy(tar->id, id);
+        regravarTarefa(tar);
+		free(tar);
+    }
+    free(id);
+    
+
+}
+
+void excluir_tarefa(void) {
+    Tarefa *tar;
+    char *id;
+
+    id = tela_excluir_tarefa();
+    tar = (Tarefa*) malloc(sizeof(Tarefa));
+    tar = buscar_Tarefa(id);
+    if (tar == NULL) {
+        printf(" ||             >>>>>> Projeto não encontrado! <<<<<<               ||\n");
+    }
+    else{
+        tar->status = false;
+        regravarTarefa(tar);
+        free(tar);
+    }
+    free(id);
+
+
+}
 
 char telatarefas(void){
     char op;
@@ -104,6 +143,7 @@ Tarefa* tela_adicionar_tarefa(void){
         printf("            => ");
         scanf("%[^\n]", tar->nome);
         getchar();
+        break;
     } while (!validar_nome(tar->nome));
     printf("\n");
 
@@ -112,6 +152,7 @@ Tarefa* tela_adicionar_tarefa(void){
         printf("            => ");
         scanf("%[^\n]", tar->id);
         getchar();
+        break;
     } while (!valida_id(tar->id, 5));
     printf("\n");
 
@@ -120,6 +161,7 @@ Tarefa* tela_adicionar_tarefa(void){
         printf("            => ");
         scanf("%[^\n]", tar->data_entrega);
         getchar();
+        break;
     } while (!valida_data(tar->data_entrega));
     tar->status = true;
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -129,45 +171,160 @@ Tarefa* tela_adicionar_tarefa(void){
 }
 //Funções feitas por: quirinof
 
-void tela_editar_tarefa(void){
-    char cpf[12];
+char* tela_atualizar_tarefa(void){
+    char *id;
 
+    id = (char*) malloc(6*sizeof(char));
     system("clear||cls");
     printf("\n"); 
-    printf("///           = = = = = = = = Editar Tarefas = = = = = = = =              ///\n");
+    printf("///           = = = = = = = = Atualizar Tarefas = = = = = = = =           ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Informe o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    do {
+        printf("            Digite o ID do Projeto: \n");
+        printf("            => ");
+        scanf("%[^\n]", id);
+        getchar();
+        break;
+    } while (!valida_id(id, 5));
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+
+    return id;
+
 }
 
-void tela_excluir_tarefa(void){
-    char cpf[12];
+void tela_editar_tarefa(Tarefa* tar) {
+    char editar;
+
+    do {
+        system("cls||clear");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||                           __ EDITAR __                          ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 1 ] Titulo                                            ||\n");
+        printf(" ||         [ 2 ] ID                                                ||\n");
+        printf(" ||         [ 3 ] Data para entrega                                 ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" ||         [ 0 ] Retornar ao menu de tarefas                       ||\n");
+        printf(" ||                                                                 ||\n");
+        printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf(" ||                                                                 ||\n");
+        printf("           Digite sua escolha: ");
+        scanf("%c", &editar);
+        getchar();
+        printf("\n");
+        switch (editar) {
+            case '1': tela_editar_titulo_Tarefa(tar);
+                      break;
+            case '2': tela_editar_id_Tarefa(tar);
+                      break;
+            case '3': tela_editar_data_Tarefa(tar);
+                      break;
+        }
+    } while (editar != '0');
+    tar->status = true;
+}
+//Funções feitas por: quirinof
+
+void tela_editar_titulo_Tarefa(Tarefa* tar){
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("         Novo titulo da tarefa: \n");
+        printf("         => ");
+        scanf("%[^\n]", tar->nome);
+        getchar();
+        break;
+    } while (!validar_nome(tar->nome));
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+}
+//Funções feitas por: quirinof
+
+void tela_editar_id_Tarefa(Tarefa* tar){
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("            Novo ID da tarefa: \n");
+        printf("            => ");
+        scanf("%[^\n]", tar->id);
+        getchar();
+        break;
+    } while (!valida_id(tar->id, 5));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+
+}
+//Funções feitas por: quirinof
+
+void tela_editar_data_Tarefa(Tarefa* tar){
+    system("cls||clear");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                           __ EDITAR __                          ||\n");
+    printf(" ||                                                                 ||\n");
+    do {
+        printf("         Nova data de entrega da tarefa (dd/mm/aaaa): \n");
+        printf("         => ");
+        scanf("%[^\n]", tar->data_entrega);
+        getchar();
+        break;
+    } while (!valida_data(tar->data_entrega));    
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                ...... Informacao atualizada ......              ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    getchar(); 
+
+}
+//Funções feitas por: quirinof
+
+char* tela_excluir_tarefa(void){
+    char *id;
 
     system("clear||cls");
     printf("\n"); 
     printf("///           = = = = = = = = Excluir Tarefas = = = = = = = =             ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Informe o CPF (apenas números): ");
-    scanf("%[0-9]", cpf);
+    do {
+        printf("            Digite o ID da Tarefa: \n");
+        printf("            => ");
+        scanf("%[^\n]", id);
+        getchar();
+        break;
+    } while (!valida_id(id, 5));
+    printf(" ||                                                                 ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" ||                  ...... Tarefa excluido ......                  ||\n");
+    printf(" ||                                                                 ||\n");
+    printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+
+    return id;
 }
 
 // Arquivamento
 void salvar_tarefa(Tarefa* tar) {
-    FILE *fp;
+    FILE* fp;
     fp = fopen("tarefa.dat", "ab");
     if(fp == NULL) {
         printf("Algo deu errado"); 
