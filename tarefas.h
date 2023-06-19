@@ -21,7 +21,7 @@ void tela_editar_tarefa(Tarefa*);
 void tela_editar_titulo_Tarefa(Tarefa*);
 void tela_editar_id_Tarefa(Tarefa*);
 void tela_editar_data_Tarefa(Tarefa*);
-char* tela_excluir_tarefa(void);
+void tela_excluir_tarefa(char*);
 
 void salvar_tarefa(Tarefa*);
 Tarefa* buscar_Tarefa(char*);

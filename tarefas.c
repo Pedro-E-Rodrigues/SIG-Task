@@ -40,6 +40,8 @@ void adicionar_tarefa(void) {
     Tarefa *tar;
     
     tar = tela_adicionar_tarefa();
+    
+    
     salvar_tarefa(tar);
 
     free(tar);
@@ -67,9 +69,9 @@ void editar_tarefa(void) {
 
 void excluir_tarefa(void) {
     Tarefa *tar;
-    char *id;
+    char id[6];
 
-    id = tela_excluir_tarefa();
+    tela_excluir_tarefa(id);
     tar = (Tarefa*) malloc(sizeof(Tarefa));
     tar = buscar_Tarefa(id);
     if (tar == NULL) {
@@ -78,9 +80,9 @@ void excluir_tarefa(void) {
     else{
         tar->status = false;
         regravarTarefa(tar);
-        free(tar);
     }
-    free(id);
+    free(tar);
+    // free(id);
 
 
 }
@@ -146,7 +148,6 @@ Tarefa* tela_adicionar_tarefa(void){
         break;
     } while (!validar_nome(tar->nome));
     printf("\n");
-
     do {
         printf("            ID do Projeto: \n");
         printf("            => ");
@@ -155,7 +156,6 @@ Tarefa* tela_adicionar_tarefa(void){
         break;
     } while (!valida_id(tar->id, 5));
     printf("\n");
-
     do {
         printf("            Data limite para entrega (dd/mm/aaaa): \n");
         printf("            => ");
@@ -168,7 +168,6 @@ Tarefa* tela_adicionar_tarefa(void){
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     return tar;
-    free (tar);
 }
 //Funções feitas por: quirinof
 
@@ -296,9 +295,9 @@ void tela_editar_data_Tarefa(Tarefa* tar){
 
 }
 //Funções feitas por: quirinof
-
-char* tela_excluir_tarefa(void){
-    char *id;
+    // return tar;
+void tela_excluir_tarefa(char* id){
+    // char id[6];
 
     system("clear||cls");
     printf("\n"); 
@@ -320,7 +319,7 @@ char* tela_excluir_tarefa(void){
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar();
 
-    return id;
+    // return id;
 }
 
 // Arquivamento
@@ -331,7 +330,6 @@ void salvar_tarefa(Tarefa* tar) {
         printf("Algo deu errado"); 
     }
     fwrite(tar, sizeof(Tarefa), 1, fp);
-    return tar;
     fclose(fp);
 }
 
