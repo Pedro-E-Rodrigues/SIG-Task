@@ -167,7 +167,8 @@ Tarefa* tela_adicionar_tarefa(void){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    return tar;
+    free (tar);
 }
 //Funções feitas por: quirinof
 
@@ -330,6 +331,7 @@ void salvar_tarefa(Tarefa* tar) {
         printf("Algo deu errado"); 
     }
     fwrite(tar, sizeof(Tarefa), 1, fp);
+    return tar;
     fclose(fp);
 }
 
