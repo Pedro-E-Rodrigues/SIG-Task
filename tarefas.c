@@ -157,6 +157,11 @@ Tarefa* tela_adicionar_tarefa(void){
     } while (!valida_id(tar->id, 5));
     printf("\n");
     do {
+        printf("/// CPF (apenas números): ");
+        scanf("%[0-9]", tar->cpf);
+        getchar();
+    } while (!validar_cpf(tar->cpf));
+    do {
         printf("            Data limite para entrega (dd/mm/aaaa): \n");
         printf("            => ");
         scanf("%[^\n]", tar->data_entrega);

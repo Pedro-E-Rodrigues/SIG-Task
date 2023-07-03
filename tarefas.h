@@ -1,6 +1,7 @@
 typedef struct tarefa Tarefa;
 struct tarefa {
     char nome[71];
+    char cpf[12];
     char id[6];
     char data_entrega[11];
     int status;
