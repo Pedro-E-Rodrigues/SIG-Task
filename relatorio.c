@@ -74,10 +74,12 @@ void listar_tarefasFunc(void){
     fp = fopen("tarefa.dat", "rb");
     printf("/// CPF (apenas números): ");
     scanf("%[0-9]",cpf);
+    getchar();
     while(fread(tar, sizeof(Tarefa), 1,fp)){
         if (strcmp(tar->cpf,cpf)==0) {
             exibirTarefa(tar);
-            printf("/n");
+            printf("\n");
+        
         }
     }
     fclose(fp);

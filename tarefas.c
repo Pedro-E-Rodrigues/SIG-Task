@@ -12,7 +12,7 @@ void modulotarefas(void){
     do {
         opcao = telatarefas();
         switch(opcao) {
-            case '1': 	visualizar_tarefa();
+            case '1':   visualizar_tarefa();
                         break;
             case '2': 	adicionar_tarefa();
                         break;
@@ -31,7 +31,6 @@ void visualizar_tarefa(void) {
     id = tela_visualizar_tarefa();
     tar = buscar_Tarefa(id);
     exibirTarefa(tar);
-    
     free(tar);
     free(id);
 }
@@ -366,7 +365,6 @@ void exibirTarefa(Tarefa* tar){
         printf("Nome: %s\n", tar->nome);
         printf("Data de Entrega(dd/mm/aaaa): %s \n", tar->data_entrega);
         printf("Status: %d\n", tar->status);
-
     }
     printf("\n\nTecle ENTER para continuar!\n\n");
 	getchar();
