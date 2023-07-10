@@ -5,6 +5,7 @@
 #include "funcionarios.h"
 #include "valida.h"
 #include "tarefas.h"
+#include "compromissos.h"
 #include <string.h>
 
 void modulo_Relatorio(void){
