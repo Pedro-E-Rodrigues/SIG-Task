@@ -16,7 +16,11 @@ void modulo_Relatorio(void){
             case '1': listar_funcionarios();
                     break;
             case '2': listar_tarefasFunc();
-                    break;        
+                    break;
+            case '3': listar_tarefas();
+                    break;
+            case '4': listar_compromissos();
+                    break;                        
         }    
     }while (opcao != '0');
 }
@@ -33,7 +37,8 @@ char telarelatorio(void){
     printf("///                                                                       ///\n");
     printf("///           1. Listar Funcionarios                                      ///\n");
 	printf("///           2. Exibir Tarefas por Funcionario                           ///\n");
-	printf("///           3. Exibir Funcionarios por horario                          ///\n");
+	printf("///           3. Listar Tarefas                                           ///\n");
+    printf("///           4. Listar Compromissos                                      ///\n");
     printf("///           0. Voltar ao menu anterior                                  ///\n");
     printf("///                                                                       ///\n");
     printf("///           Escolha a opção desejada: ");
@@ -65,6 +70,37 @@ void listar_funcionarios(void){
 
 }
 
+void listar_tarefas(void){
+    FILE* fp;
+    Tarefa* tar;
+
+    tar = (Tarefa*) malloc(sizeof(Tarefa));
+    fp = fopen("tarefa.dat", "rb");
+    while(fread(tar, sizeof(Tarefa), 1,fp)){
+        exibirTarefa(tar);
+        printf("/n");
+    }
+    fclose(fp);
+    free(tar);
+
+
+}
+
+void listar_compromissos(void){
+    FILE* fp;
+    Compromisso* comp;
+
+    comp = (Compromisso*) malloc(sizeof(Compromisso));
+    fp = fopen("compromisso.dat", "rb");
+    while(fread(comp, sizeof(Compromisso), 1,fp)){
+        exibirCompromisso(comp);
+        printf("/n");
+    }
+    fclose(fp);
+    free(comp);
+
+
+}
 
 void listar_tarefasFunc(void){
     FILE* fp;
