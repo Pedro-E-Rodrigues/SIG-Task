@@ -6,3 +6,5 @@ void listar_funcionarios(void);
 void listar_tarefasFunc(void);
 void listar_tarefas(void);
 void listar_compromissos(void);
+
+void modulo_lista_ordenada_funcionarios(void);

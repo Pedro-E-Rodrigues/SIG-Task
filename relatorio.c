@@ -8,6 +8,11 @@
 #include "compromissos.h"
 #include <string.h>
 
+void relatorio_ordenado_fnc(Funcionario **);
+void exibir_lista_fnc(Funcionario *);
+void excluir_lista_fnc(Funcionario **);
+
+
 void modulo_Relatorio(void){
     char opcao;
     do{
@@ -20,12 +25,20 @@ void modulo_Relatorio(void){
             case '3': listar_tarefas();
                     break;
             case '4': listar_compromissos();
-                    break;                        
+                    break;   
+            case '5': modulo_lista_ordenada_funcionarios();
+                    break;                             
         }    
     }while (opcao != '0');
 }
 
-
+void modulo_lista_ordenada_funcionarios(void) {
+    Funcionario *lista;
+    lista = NULL;
+    relatorio_ordenado_fnc(&lista);
+    exibir_lista_fnc(lista);
+    excluir_lista_fnc(&lista);
+}
 
 
 char telarelatorio(void){
@@ -39,6 +52,7 @@ char telarelatorio(void){
 	printf("///           2. Exibir Tarefas por Funcionario                           ///\n");
 	printf("///           3. Listar Tarefas                                           ///\n");
     printf("///           4. Listar Compromissos                                      ///\n");
+    printf("///           5. Listagem Ordenada dos Funcionarios                       ///\n");
     printf("///           0. Voltar ao menu anterior                                  ///\n");
     printf("///                                                                       ///\n");
     printf("///           Escolha a opção desejada: ");
@@ -123,4 +137,61 @@ void listar_tarefasFunc(void){
     free(tar);
 
 
+}
+
+void relatorio_ordenado_fnc(Funcionario **lista) {
+    FILE *fp;
+    Funcionario *func;
+
+    excluir_lista_fnc(&(*lista));
+    *lista = NULL;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Algo deu Errado");
+    }
+    else {
+        func = (Funcionario*) malloc(sizeof(Funcionario));
+        while (fread(func, sizeof(Funcionario), 1, fp)) {
+            if ((*lista == NULL) || (strcmp(func->nome, (*lista)->nome) < 0)) {
+                func->prox = *lista;
+                *lista = func;
+            }
+            else {
+                Funcionario *ant = *lista;
+                Funcionario *atu =  (*lista)->prox;
+                while ((atu != NULL) && (strcmp(atu->nome, func->nome) < 0)) {
+                    ant = atu;
+                    atu = atu->prox;
+                }
+                ant->prox = func;
+                func->prox = atu;
+            }
+            func = (Funcionario *) malloc(sizeof(Funcionario));
+        }
+        free(func);
+        fclose(fp);
+    }
+} // by: @FlaviusGorgonio
+
+void exibir_lista_fnc(Funcionario *aux) {
+    system("cls||clear");
+    while( aux != NULL){
+        printf("CPF: %s\n", aux->cpf);
+        printf("Nome: %s\n", aux->nome);
+        printf("Email: %s\n", aux->email);
+        printf("Data de nascimento: %s\n", aux->nasc);
+        printf("Celular: %s\n", aux->celular);
+        printf("Status: %d\n", aux->status);
+        aux = aux->prox;
+    }
+    getchar();
+}
+
+void excluir_lista_fnc(Funcionario **lista) {
+    Funcionario *func; 
+    while (*lista != NULL) {
+        func = *lista;
+        *lista = (*lista)->prox;
+        free(func);
+    }
 }

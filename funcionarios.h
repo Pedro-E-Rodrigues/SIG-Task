@@ -9,6 +9,7 @@ struct funcionario {
     char nasc[11];
     char celular[12];
     int status;
+    Funcionario *prox;
 };
     
 
