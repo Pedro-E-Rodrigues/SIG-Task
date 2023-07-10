@@ -248,7 +248,7 @@ void tela_editar_compromisso(Compromisso* comp) {
     } while (editar != '0');
     comp->status = true;
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_titulo_Compromisso(Compromisso* comp){
     system("cls||clear");
@@ -268,7 +268,7 @@ void tela_editar_titulo_Compromisso(Compromisso* comp){
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_id_Compromisso(Compromisso* comp){
     system("cls||clear");
@@ -293,7 +293,7 @@ void tela_editar_id_Compromisso(Compromisso* comp){
     getchar(); 
 
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_data_Compromisso(Compromisso* comp){
     system("cls||clear");

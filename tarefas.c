@@ -173,7 +173,7 @@ Tarefa* tela_adicionar_tarefa(void){
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     return tar;
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 char* tela_atualizar_tarefa(void){
     char *id;
@@ -228,7 +228,7 @@ void tela_editar_tarefa(Tarefa* tar) {
     } while (editar != '0');
     tar->status = true;
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_titulo_Tarefa(Tarefa* tar){
     system("cls||clear");
@@ -248,7 +248,7 @@ void tela_editar_titulo_Tarefa(Tarefa* tar){
     printf(" |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
     getchar(); 
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_id_Tarefa(Tarefa* tar){
     system("cls||clear");
@@ -273,7 +273,7 @@ void tela_editar_id_Tarefa(Tarefa* tar){
     getchar(); 
 
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
 
 void tela_editar_data_Tarefa(Tarefa* tar){
     system("cls||clear");
@@ -298,7 +298,7 @@ void tela_editar_data_Tarefa(Tarefa* tar){
     getchar(); 
 
 }
-//Funções feitas por: quirinof
+//Funções feitas por: https://github.com/quirinof
     // return tar;
 void tela_excluir_tarefa(char* id){
     // char id[6];
